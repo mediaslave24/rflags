@@ -25,4 +25,11 @@ class TestRFlags < Minitest::Test
   def test_it_defines_redis_flag
     assert_instance_of RFlags::RedisFlag, Flags.flag_c
   end
+
+  def test_resolve_exception
+    error = assert_raises(TypeError) do
+      Flags.flag wrong: Pathname.new('.')
+    end
+    assert_match(/but have Pathname/, error.message)
+  end
 end

@@ -37,7 +37,7 @@ module RFlags
     else
       raise TypeError,
         "Wrong backend definition for RFlags#flag.\n" <<
-        "Backend should be instance of String or Array"
+        "Backend should be instance of String or Array, but have #{backend.class}"
     end
   end
 end
