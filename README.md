@@ -1,8 +1,6 @@
 ## rflags
 
-Tool for storing boolean flags with different backends
-
-### Synopsis:
+Boolean flags with different backends
 
 ``` ruby
 require 'rflags'
