@@ -13,6 +13,10 @@ class Flags
   flag redis_flag: [Redis.current, 'flags:redis_flag']
 
   flag :variable_flag
+
+  lazy_flag(:a) { Pathname.new('tmp/a') }
+
+  lazy_flag(:b) { [Redis.curent, 'key-1'] }
 end
 
 Flags.file_flag       # #<RFlags::FileFlag>
