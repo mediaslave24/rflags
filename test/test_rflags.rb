@@ -9,6 +9,7 @@ class TestRFlags < Minitest::Test
     flag :flag_b => 'tmp/flag_b'
     flag :flag_c => [Redis, 'key']
     flag :flag_d => Pathname.new('tmp/flag_d')
+    lazy_flag(:flag_e) { Pathname.new('tmp/flag_e') }
   end
 
   def test_it_defines_flag_method
@@ -35,6 +36,10 @@ class TestRFlags < Minitest::Test
     error = assert_raises(TypeError) do
       Flags.flag wrong: Struct.new(:a)
     end
-    assert_match(/but have Class/, error.message)
+    assert_match(/Can't handle Class/, error.message)
+  end
+
+  def test_it_defines_lazy_evaluated_flag
+    assert_instance_of RFlags::FileFlag, Flags.flag_e
   end
 end
