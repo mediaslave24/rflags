@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'rflags'
-  s.version = '0.1.0'
+  s.version = '0.1.1'
   s.summary = 'Boolean flags with different backends'
   s.description = 'Stores boolean flags in file, redis or memory'
   s.author = ['Michael Lutsiuk']
