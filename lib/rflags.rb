@@ -29,7 +29,7 @@ module RFlags
 
   def resolve_flag_backend(backend)
     case backend
-    when String
+    when String, Pathname
       RFlags::FileFlag.new(backend)
     when Array
       ::Object.const_get("::RFlags::#{backend[0].class}Flag")

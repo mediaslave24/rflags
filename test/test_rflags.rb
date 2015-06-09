@@ -8,6 +8,7 @@ class TestRFlags < Minitest::Test
     flag :flag_a
     flag :flag_b => 'tmp/flag_b'
     flag :flag_c => [Redis, 'key']
+    flag :flag_d => Pathname.new('tmp/flag_d')
   end
 
   def test_it_defines_flag_method
@@ -26,10 +27,14 @@ class TestRFlags < Minitest::Test
     assert_instance_of RFlags::RedisFlag, Flags.flag_c
   end
 
+  def test_it_defines_file_flag_from_pathname
+    assert_instance_of RFlags::FileFlag, Flags.flag_d
+  end
+
   def test_resolve_exception
     error = assert_raises(TypeError) do
-      Flags.flag wrong: Pathname.new('.')
+      Flags.flag wrong: Struct.new(:a)
     end
-    assert_match(/but have Pathname/, error.message)
+    assert_match(/but have Class/, error.message)
   end
 end
